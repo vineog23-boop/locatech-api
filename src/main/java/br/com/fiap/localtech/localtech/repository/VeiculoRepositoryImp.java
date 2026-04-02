@@ -3,10 +3,7 @@
  * Implementação da interface VeiculoRepository.
  * Responsável por executar as operações de banco de dados
  * relacionadas à entidade Veiculo via JdbcClient.
- */
-
-
-
+ *
 package br.com.fiap.localtech.localtech.repository;
 import br.com.fiap.localtech.localtech.entities.Veiculo;
 import org.springframework.jdbc.core.simple.JdbcClient;
