@@ -18,3 +18,13 @@ A **Locatech API** é uma aplicação backend desenvolvida para estudo de constr
 - **Java 21**, **Spring Boot 4.0.5**, **Spring JDBC**, **Spring Web MVC**, **H2**, **Lombok**
 ## 🏛️ Arquitetura
 A aplicação utiliza uma arquitetura em camadas (controllers, entities, repository, service).
+## ▶️ Como executar
+```bash
+git clone https://github.com/vineog23-boop/locatech-api.git
+cd locatech-api
+mvn clean install
+mvn spring-boot:run
+```
+### Acesso local
+- Aplicação: http://localhost:8080
+- Console H2: http://localhost:8080/h2-console
