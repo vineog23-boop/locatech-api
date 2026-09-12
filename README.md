@@ -1,94 +1,84 @@
 <h1 align="center">🚗 Locatech API</h1>
+<p align="center">Estudos de modelagem de locação de veículos e persistência com JDBC.</p>
 <p align="center">
-  API backend desenvolvida com Spring Boot para gerenciamento de locação de veículos
+  <img src="https://img.shields.io/badge/Java-21-2563EB?style=flat-square" alt="Java: 21">
+  <img src="https://img.shields.io/badge/Spring%20Boot-4.0.5-0F766E?style=flat-square" alt="Spring Boot: 4.0.5">
+  <img src="https://img.shields.io/badge/Status-Estrutura%20inicial-475569?style=flat-square" alt="Status: Estrutura inicial">
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk" alt="Java 21"/>
-  <img src="https://img.shields.io/badge/Spring_Boot-4.0.5-brightgreen?style=for-the-badge&logo=springboot" alt="Spring Boot 4.0.5"/>
-  <img src="https://img.shields.io/badge/Spring_JDBC-blue?style=for-the-badge&logo=spring" alt="Spring JDBC"/>
-  <img src="https://img.shields.io/badge/Spring_Web_MVC-228B22?style=for-the-badge" alt="Spring Web MVC"/>
-  <img src="https://img.shields.io/badge/H2-09476B?style=for-the-badge" alt="H2"/>
-  <img src="https://img.shields.io/badge/Lombok-CC0000?style=for-the-badge" alt="Lombok"/>
-</p>
+<p align="center"><a href="#visão-geral">Visão geral</a> · <a href="#como-executar">Execução</a> · <a href="#próximos-passos">Próximos passos</a></p>
 
 ---
 
-## 📌 Sobre o projeto
+## Visão geral
 
-A **Locatech API** é uma aplicação backend desenvolvida para estudo de construção de APIs REST com Java e Spring Boot, aplicada ao contexto de locação de veículos.
+Projeto acadêmico para explorar um backend de locação de veículos. O repositório contém modelos de veículo, pessoa e aluguel, uma interface de persistência e a estrutura inicial de controller e service.
 
-O projeto foi pensado para praticar **organização em camadas**, **modelagem de domínio**, **operações de CRUD** e **persistência com Spring JDBC**.
+**O CRUD ainda não está disponível via HTTP.** A única rota implementada é `GET /veiculos`, cujo retorno é o texto `Veiculo`.
 
----
+## Estado do código
 
-## ✅ Funcionalidades implementadas
+| Parte | Situação |
+| --- | --- |
+| Modelagem | Classes `Veiculo`, `Pessoa` e `Aluguel`. |
+| Controller | Endpoint demonstrativo de leitura. |
+| Service | Classe criada, ainda sem operações. |
+| Repository | Interface com assinaturas de consulta, inclusão, atualização e exclusão. |
+| Implementação JDBC | Rascunho em `VeiculoRepositoryImp.java`; ainda não está integrado. |
+| Banco | H2 e Spring JDBC nas dependências; sem schema SQL versionado. |
 
-- CRUD de veículos
-- Organização em camadas
-- Execução local simples com banco H2 em memória
+O arquivo `VeiculoRepositoryImp.java` começa com um comentário de bloco sem fechamento. Esse trecho precisa ser corrigido antes de um build completo; a documentação não considera o projeto executável como CRUD neste checkpoint.
 
----
+## Tecnologias
 
-## 🧱 Stack utilizada
+| Tecnologia | Uso |
+| --- | --- |
+| Java 21 | Linguagem |
+| Spring Boot 4.0.5 | Aplicação |
+| Spring Web MVC | Camada HTTP |
+| Spring JDBC / JdbcClient | Persistência SQL em estudo |
+| H2 | Dependência de banco embarcado |
+| Lombok e Maven Wrapper | Desenvolvimento e build |
 
-- **Java 21**
-- **Spring Boot 4.0.5**
-- **Spring JDBC**
-- **Spring Web MVC**
-- **H2 Database**
-- **Lombok**
+## Como executar
 
----
-
-## 🏛️ Arquitetura
-
-A aplicação utiliza uma arquitetura em camadas com separação entre:
-- `controllers`
-- `entities`
-- `repository`
-- `service`
-
----
-
-## ⚙️ Configuração atual
-
-O projeto roda localmente com **H2 em memória**.
-
-> Observação: a camada de persistência utiliza **Spring JDBC**, e não Spring Data JPA.
-
----
-
-## ▶️ Como executar
+Primeiro, clone e abra o projeto com **JDK 21**:
 
 ```bash
 git clone https://github.com/vineog23-boop/locatech-api.git
 cd locatech-api
-mvn clean install
-mvn spring-boot:run
 ```
 
-**Acesso local**
-- Aplicação: http://localhost:8080
-- Console H2: http://localhost:8080/h2-console
+Após corrigir o comentário de bloco e completar a configuração necessária:
 
----
+```bash
+bash ./mvnw spring-boot:run
+```
 
-## 📚 Conceitos aplicados
+No Windows: `.\mvnw.cmd spring-boot:run`.
 
-- Arquitetura em camadas
-- Spring MVC
-- Persistência com JdbcTemplate
-- Banco H2 para desenvolvimento local
+A rota demonstrativa será `http://localhost:8080/veiculos`. O arquivo `application.properties` só define o nome da aplicação; o console H2 ainda não está habilitado explicitamente.
 
----
+## Organização
 
-## 🚧 Status
+| Pacote | Objetivo |
+| --- | --- |
+| `controllers` | Receber requisições HTTP. |
+| `entities` | Modelar veículos, pessoas e aluguéis. |
+| `repository` | Definir e implementar acesso SQL. |
+| `service` | Concentrar as operações da aplicação. |
 
-Projeto de estudo em evolução.
+## Testes
 
----
+Há um teste de contexto Spring no repositório. O comando é `bash ./mvnw test`, condicionado à correção do bloqueio de compilação. Não há uma suíte de CRUD implementada.
 
-## 👨‍💻 Autor
+## Próximos passos
 
-Desenvolvido por **Vinícius Oliveira Gonçalves** como parte da formação em Java backend.
+- Corrigir e integrar a implementação de `VeiculoRepository`.
+- Criar o schema do banco e configurar a persistência.
+- Implementar service, DTOs e endpoints do CRUD.
+- Validar entradas e testar sucesso, ausência de registros e falhas.
+
+## Autor
+
+**Vinícius Oliveira** · [GitHub](https://github.com/vineog23-boop) · [LinkedIn](https://www.linkedin.com/in/vinícius-oliveira-1770b7306)
